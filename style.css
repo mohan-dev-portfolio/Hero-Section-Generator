@@ -269,6 +269,7 @@ header {
 .brand {
     font-weight: 700;
     font-size: 15px;
+    padding:10px
     letter-spacing: -0.02em;
     display: flex;
     align-items: center;
