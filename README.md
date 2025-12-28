@@ -6,9 +6,6 @@
 
 ## 🚀 Features
 
-- **Zero Dependencies**  
-  Runs entirely in the browser with a single `index.html` file.
-
 - **Live Preview**  
   Real-time rendering of changes as you type.
 
@@ -49,13 +46,13 @@ HeroForge is a static web application. No installation or build step is required
 Clone the repository:
 
 ```bash
-git clone https://github.com/mohan-dev-portfolio/hero-forge.git
+git clone https://github.com/mohan-dev-portfolio/Hero-Section-Generator.git
 ```
 
 Navigate to the project directory:
 
 ```bash
-cd hero-forge
+cd Hero-Section-Generator
 ```
 
 Run the app:
