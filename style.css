@@ -254,16 +254,25 @@ body {
 #app-view.visible { opacity: 1; }
 
 header {
-    height: 64px;
+    /* allow header to grow on smaller screens while keeping a comfortable minimum */
+    height: auto;
+    min-height: 64px;
+
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    padding: 0 var(--space-6);
+
+    /* responsive horizontal padding and a small vertical cushion */
+    padding: clamp(0.25rem, 1.2vh, 0.75rem) clamp(1rem, 4vw, var(--space-6));
+
     background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(12px);
     flex-shrink: 0;
     justify-content: space-between;
     z-index: 50;
+
+    /* make sizing predictable when padding changes */
+    box-sizing: border-box;
 }
 
 .brand {
