@@ -1,0 +1,388 @@
+const ROLE_PRESETS = {
+    "Frontend Developer": "Building scalable design systems as a",
+    "UI Systems Designer": "Crafting pixel-perfect interfaces as a",
+    "Full Stack Engineer": "Shipping end-to-end products as a",
+    "Creative Developer": "Merging art and code as a",
+    "Product Engineer": "Solving user problems as a"
+};
+
+const TEMPLATES = {
+    minimal: (data) => `
+<style>
+.hero-proto {
+    --proto-bg: #050505; --proto-text: #ffffff; --proto-accent: #333333;
+    --proto-font: 'Inter', sans-serif; --proto-mono: 'JetBrains Mono', monospace;
+    background-color: var(--proto-bg); color: var(--proto-text); font-family: var(--proto-font);
+    min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden; padding: clamp(1.5rem, 5vw, 4rem);
+}
+.hero-proto::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(var(--proto-accent) 1px, transparent 1px),
+        linear-gradient(90deg, var(--proto-accent) 1px, transparent 1px);
+    background-size: 40px 40px; opacity: 0.15;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+    pointer-events: none;
+}
+.proto-content {
+    max-width: 1000px; width: 100%; margin: 0 auto; position: relative; z-index: 10;
+    border-left: 1px solid rgba(255,255,255,0.2); padding-left: clamp(1rem, 3vw, 2rem);
+}
+.proto-label { font-family: var(--proto-mono); font-size: 0.875rem; color: #888; margin-bottom: 1rem; display: block; letter-spacing: 0.05em; }
+.proto-title { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem; word-wrap: break-word; }
+.proto-role { font-size: clamp(1.25rem, 4vw, 2rem); color: #888; font-weight: 400; margin-bottom: 3rem; line-height: 1.4; }
+.proto-btn { display: inline-block; background: var(--proto-text); color: var(--proto-bg); padding: 1rem 2rem; font-family: var(--proto-mono); font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: transform 0.2s; text-align: center; }
+.proto-btn:hover { transform: translateY(-2px); }
+@media (max-width: 480px) { .proto-btn { width: 100%; } }
+</style>
+<section class="hero-proto">
+    <div class="proto-content">
+        <span class="proto-label">01 // INTRODUCTION</span>
+        <h1 class="proto-title">${data.name}</h1>
+        <h2 class="proto-role">${data.subheading}<br><span style="color: #fff">${data.role}</span>.</h2>
+        <a href="#work" class="proto-btn">VIEW DOCUMENTATION</a>
+    </div>
+</section>`.trim(),
+
+    neon: (data) => `
+<style>
+    .hero-lumina {
+        --lum-bg: #030014; --lum-primary: #ffffff; --lum-secondary: #52525b; --lum-text: #f8fafc;
+        background-color: var(--lum-bg); color: var(--lum-text); font-family: 'Inter', system-ui, sans-serif;
+        min-height: 80vh; display: flex; align-items: center; justify-content: center;
+        position: relative; padding: clamp(1.5rem, 5vw, 3rem); text-align: center; overflow: hidden;
+    }
+    .hero-lumina::after {
+        content: ''; position: absolute; width: 600px; height: 600px;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(3,0,20,0) 70%);
+        top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; pointer-events: none;
+    }
+    .lumina-container { position: relative; z-index: 10; max-width: 800px; width: 100%; }
+    .lumina-badge { display: inline-block; padding: 6px 16px; border-radius: 50px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; margin-bottom: 2rem; backdrop-filter: blur(10px); }
+    .lumina-title { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%); background-clip: text; -webkit-background-clip: text; color: transparent; word-break: break-word; }
+    .lumina-role { font-size: clamp(1.25rem, 4vw, 1.75rem); font-weight: 500; background: linear-gradient(90deg, #a1a1aa, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.4; }
+    .lumina-sub { font-size: 1.1rem; color: #94a3b8; margin-top: 0.5rem; margin-bottom: 2.5rem; font-weight: 300; }
+    .lumina-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .lumina-btn { padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; white-space: nowrap; }
+    .lumina-btn-primary { background: #fff; color: #000; }
+    .lumina-btn-primary:hover { box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+    .lumina-btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+    .lumina-btn-ghost:hover { background: rgba(255,255,255,0.1); }
+    @media (max-width: 480px) { .lumina-btn { flex: 1; text-align: center; } }
+</style>
+<section class="hero-lumina">
+    <div class="lumina-container">
+        <div class="lumina-badge">Available for new projects</div>
+        <h1 class="lumina-title">${data.name}</h1>
+        <div class="lumina-role">${data.role}</div>
+        <p class="lumina-sub">${data.subheading}</p>
+        <div class="lumina-cta-group">
+            <a href="#" class="lumina-btn lumina-btn-primary">View Projects</a>
+            <a href="#" class="lumina-btn lumina-btn-ghost">Contact Me</a>
+        </div>
+    </div>
+</section>`.trim(),
+
+    story: (data) => `
+<style>
+    .hero-story {
+        --story-bg: #0f172a; --story-text: #e2e8f0; --story-highlight: #ffffff;
+        background-color: var(--story-bg); color: var(--story-text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        min-height: 60vh; display: flex; align-items: center; padding: clamp(1.5rem, 5vw, 4rem); position: relative;
+    }
+    @media (max-width: 900px) { .hero-story { min-height: 50vh; padding: clamp(1rem, 3vw, 2rem); } }
+    .story-content { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+    @media(min-width: 900px) { .story-content { grid-template-columns: 2fr 1fr; } }
+    .story-main { padding-right: 0; }
+    @media(min-width: 900px) { .story-main { padding-right: 2rem; } }
+    .story-pre { color: var(--story-highlight); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.875rem; margin-bottom: 1.5rem; display: block; }
+    .story-headline { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.2; font-weight: 400; margin-bottom: 2rem; background: linear-gradient(90deg, #e2e8f0, #ffffff); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    @media (max-width: 900px) { .story-headline { font-size: clamp(1.5rem, 4vw, 3rem); margin-bottom: 1.5rem; } }
+    .story-headline strong { font-weight: 700; }
+    .story-sub { font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.7; color: #94a3b8; max-width: 600px; margin-bottom: 2.5rem; border-left: 2px solid var(--story-highlight); padding-left: 1.5rem; }
+    @media (max-width: 900px) { .story-sub { font-size: clamp(0.9rem, 1.5vw, 1rem); margin-bottom: 2rem; } }
+    .story-link { color: #fff; text-decoration: none; border-bottom: 1px solid var(--story-highlight); padding-bottom: 2px; transition: opacity 0.2s; display: inline-block; }
+    .story-link:hover { opacity: 0.8; }
+</style>
+<section class="hero-story">
+    <div class="story-content">
+        <div class="story-main">
+            <span class="story-pre">Portfolio &bull; 2025</span>
+            <h1 class="story-headline">Hello, I'm <strong>${data.name}</strong>.<br>${data.subheading} <strong>${data.role}</strong>.</h1>
+            <p class="story-sub">Focusing on component systems, micro-interactions, and the space where design meets engineering. Currently building tools for the next generation of web builders.</p>
+            <a href="#" class="story-link">Read my engineering philosophy &rarr;</a>
+        </div>
+    </div>
+</section>`.trim()
+};
+
+const App = {
+    state: {
+        name: "Mohan Prasath",
+        role: "Frontend Developer",
+        subheading: ROLE_PRESETS["Frontend Developer"],
+        variant: "minimal"
+    },
+
+    init() {
+        try {
+            this.cacheDOM();
+            this.bindLandingEvents();
+            this.populateRoles();
+            this.bindAppEvents();
+            this.updateSubheadingFromRole();
+            this.render();
+            this.dom.canvasArea.classList.add('code-hidden');
+        } catch (e) {
+            console.error("Init Error", e);
+        }
+    },
+
+    cacheDOM() {
+        this.dom = {
+            landingView: document.getElementById('landing-view'),
+            btnEnter: document.getElementById('btn-enter'),
+            appView: document.getElementById('app-view'),
+            scene3d: document.getElementById('scene-3d'),
+            inputName: document.getElementById('input-name'),
+            inputRole: document.getElementById('input-role'),
+            inputSubheading: document.getElementById('input-subheading'),
+            variantList: document.getElementById('variant-list'),
+            previewTarget: document.getElementById('preview-target'),
+            codeOutput: document.getElementById('code-output'),
+            btnGenerate: document.getElementById('btn-generate'),
+            btnCopy: document.getElementById('btn-copy'),
+            btnDownload: document.getElementById('btn-download'),
+
+            // Code Toggles
+            btnShowCode: document.getElementById('btn-show-code'),
+            btnHideCode: document.getElementById('btn-hide-code'),
+
+            codePanel: document.querySelector('.code-panel'),
+            canvasArea: document.querySelector('.canvas-area'),
+            btnContactTrigger: document.getElementById('btn-contact-trigger'),
+            contactModal: document.getElementById('contact-modal'),
+            btnCloseModal: document.getElementById('btn-close-modal'),
+            modalBackdrop: document.getElementById('modal-backdrop'),
+            headerBrand: document.querySelector('.brand')
+        };
+    },
+
+    bindLandingEvents() {
+        this.dom.btnEnter.addEventListener('click', () => {
+            this.dom.landingView.classList.add('hidden');
+            this.dom.appView.classList.add('visible');
+            setTimeout(() => { this.dom.inputName.focus(); }, 500);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (this.dom.landingView.classList.contains('hidden')) return;
+            const x = (window.innerWidth / 2 - e.pageX) / 30;
+            const y = (window.innerHeight / 2 - e.pageY) / 30;
+            this.dom.scene3d.style.transform = `translate(-50%, -50%) rotateY(${x}deg) rotateX(${y}deg)`;
+            const wrapper = document.querySelector('.grid-mask-wrapper');
+            if (wrapper) {
+                wrapper.style.setProperty('--x', `${e.clientX}px`);
+                wrapper.style.setProperty('--y', `${e.clientY}px`);
+            }
+        });
+    },
+
+    populateRoles() {
+        const select = this.dom.inputRole;
+        Object.keys(ROLE_PRESETS).forEach(role => {
+            const option = document.createElement('option');
+            option.value = role;
+            option.textContent = role;
+            select.appendChild(option);
+        });
+        select.value = this.state.role;
+    },
+
+    updateSubheadingFromRole() {
+        const role = this.dom.inputRole.value;
+        const newSub = ROLE_PRESETS[role];
+        this.dom.inputSubheading.value = newSub;
+        this.dom.inputSubheading.placeholder = newSub;
+        this.state.subheading = newSub;
+        this.state.role = role;
+    },
+
+    bindAppEvents() {
+        this.dom.inputName.addEventListener('input', (e) => {
+            this.state.name = e.target.value;
+        });
+        this.dom.inputName.addEventListener('keyup', () => this.render());
+
+        this.dom.inputRole.addEventListener('change', () => {
+            this.updateSubheadingFromRole();
+            this.render();
+        });
+
+        this.dom.inputSubheading.addEventListener('input', (e) => {
+            this.state.subheading = e.target.value;
+        });
+        this.dom.inputSubheading.addEventListener('keyup', () => this.render());
+
+        this.dom.variantList.addEventListener('click', (e) => {
+            const btn = e.target.closest('.variant-option');
+            if (!btn) return;
+            document.querySelectorAll('.variant-option').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            this.state.variant = btn.dataset.id;
+            this.render();
+        });
+
+        this.dom.btnGenerate.addEventListener('click', () => {
+            this.render();
+            this.dom.previewTarget.style.opacity = '0.5';
+            setTimeout(() => this.dom.previewTarget.style.opacity = '1', 200);
+        });
+
+        this.dom.btnCopy.addEventListener('click', () => {
+            const fullHtml = this.generateFullHtml(this.generateComponentHtml());
+            this.copyToClipboard(fullHtml);
+        });
+
+        this.dom.btnDownload.addEventListener('click', () => {
+            const fullHtml = this.generateFullHtml(this.generateComponentHtml());
+            const blob = new Blob([fullHtml], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        this.dom.btnContactTrigger.addEventListener('click', () => {
+            this.dom.contactModal.classList.add('visible');
+            this.dom.contactModal.addEventListener('keydown', this.trapFocus.bind(this));
+            setTimeout(() => { this.dom.contactModal.querySelector('a').focus(); }, 100);
+        });
+
+        const closeModal = () => {
+            this.dom.contactModal.classList.remove('visible');
+            this.dom.contactModal.removeEventListener('keydown', this.trapFocus.bind(this));
+            this.dom.btnContactTrigger.focus();
+        };
+
+        this.dom.btnCloseModal.addEventListener('click', closeModal);
+        this.dom.modalBackdrop.addEventListener('click', closeModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.dom.contactModal.classList.contains('visible')) {
+                closeModal();
+            }
+        });
+
+        // Toggle Code Panel Logic
+        this.dom.btnShowCode.addEventListener('click', () => {
+            this.dom.canvasArea.classList.remove('code-hidden');
+            this.dom.canvasArea.classList.add('code-visible');
+        });
+
+        this.dom.btnHideCode.addEventListener('click', () => {
+            this.dom.canvasArea.classList.remove('code-visible');
+            this.dom.canvasArea.classList.add('code-hidden');
+        });
+
+        // Home / Brand click event
+        this.dom.headerBrand.addEventListener('click', () => {
+            this.dom.appView.classList.remove('visible');
+            this.dom.landingView.classList.remove('hidden');
+        });
+    },
+
+    trapFocus(e) {
+        const isTab = (e.key === 'Tab' || e.keyCode === 9);
+        if (!isTab) return;
+        const focusable = this.dom.contactModal.querySelectorAll('a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+            if (document.activeElement === first) { last.focus(); e.preventDefault(); }
+        } else {
+            if (document.activeElement === last) { first.focus(); e.preventDefault(); }
+        }
+    },
+
+    copyToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed'; textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            this.showCopyFeedback();
+        } catch (err) { console.error('Fallback copy failed', err); }
+        finally { document.body.removeChild(textarea); }
+    },
+
+    showCopyFeedback() {
+        if (this.dom.btnCopy.classList.contains('copied')) return;
+        this.dom.btnCopy.textContent = "Copied!";
+        this.dom.btnCopy.classList.add('copied');
+        setTimeout(() => {
+            this.dom.btnCopy.textContent = "Copy";
+            this.dom.btnCopy.classList.remove('copied');
+        }, 2000);
+    },
+
+    sanitize(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    },
+
+    highlightCode(code) {
+        let escaped = code.replace(/&/g, "&amp;").replace(/</g, "<").replace(/>/g, ">");
+        escaped = escaped.replace(/(<!--[\s\S]*?-->)/g, '<span class="token-comment">$1</span>');
+        escaped = escaped.replace(/(<\/?[a-z0-9]+)([\s&>])/gi, '<span class="token-tag">$1</span>$2');
+        escaped = escaped.replace(/\s([a-z0-9-]+)=/gi, ' <span class="token-attr">$1</span>=');
+        escaped = escaped.replace(/(".*?")/g, '<span class="token-string">$1</span>');
+        escaped = escaped.replace(/(<!DOCTYPE html>)/gi, '<span class="token-tag" style="color: #6272a4;">$1</span>');
+        return escaped;
+    },
+
+    generateComponentHtml() {
+        const { name, role, subheading, variant } = this.state;
+        const templateFn = TEMPLATES[variant];
+        const safeName = this.sanitize(name || "Your Name");
+        const safeRole = this.sanitize(role || "Developer");
+        const effectiveSubheading = (subheading && subheading.trim() !== "") ? subheading : (ROLE_PRESETS[role] || "");
+        const safeSub = this.sanitize(effectiveSubheading);
+        return templateFn({ name: safeName, role: safeRole, subheading: safeSub }).trim();
+    },
+
+    generateFullHtml(componentHtml) {
+        const { name } = this.state;
+        const safeName = this.sanitize(name || "Portfolio");
+        return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${safeName} - Portfolio</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #050505;">
+${componentHtml}
+</body>
+</html>`;
+    },
+
+    render() {
+        const componentHtml = this.generateComponentHtml();
+        const fullHtml = this.generateFullHtml(componentHtml);
+        this.dom.previewTarget.innerHTML = componentHtml;
+        this.dom.codeOutput.innerHTML = this.highlightCode(fullHtml);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    App.init();
+});
