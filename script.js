@@ -100,7 +100,7 @@ const TEMPLATES = {
     .story-headline { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.2; font-weight: 400; margin-bottom: 2rem; background: linear-gradient(90deg, #e2e8f0, #ffffff); background-clip: text; -webkit-background-clip: text; color: transparent; }
     @media (max-width: 900px) { .story-headline { font-size: clamp(1.5rem, 4vw, 3rem); margin-bottom: 1.5rem; } }
     .story-headline strong { font-weight: 700; }
-    .story-sub { font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.7; color: #94a3b8; max-width: 600px; margin-bottom: 2.5rem; border-left: 2px solid var(--story-highlight); padding-left: 1.5rem; }
+    .story-sub { font-size: clamp(1rem, 2vw, 1rem); line-height: 1.7; color: #94a3b8; max-width: 600px; margin-bottom: 2.5rem; border-left: 2px solid var(--story-highlight); padding-left: 1.5rem; }
     @media (max-width: 900px) { .story-sub { font-size: clamp(0.9rem, 1.5vw, 1rem); margin-bottom: 2rem; } }
     .story-link { color: #fff; text-decoration: none; border-bottom: 1px solid var(--story-highlight); padding-bottom: 2px; transition: opacity 0.2s; display: inline-block; }
     .story-link:hover { opacity: 0.8; }
