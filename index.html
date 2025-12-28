@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -9,11 +10,14 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <a href="#main-content" class="skip-link">Skip to content</a>
@@ -21,10 +25,24 @@
     <!-- LANDING VIEW -->
     <section id="landing-view">
         <div class="scanlines"></div>
-        <div class="grid-mask-wrapper"><div class="landing-grid"></div></div>
+        <div class="grid-mask-wrapper">
+            <div class="landing-grid"></div>
+        </div>
         <div class="scene-3d" id="scene-3d">
-            <div class="card-3d c1"><div class="card-inner"><div class="skeleton-circle"></div><div class="skeleton-line w-80"></div><div class="skeleton-line w-50"></div></div></div>
-            <div class="card-3d c2"><div class="card-inner"><div class="skeleton-circle" style="border-radius: 4px;"></div><div class="skeleton-line w-50"></div><div class="skeleton-line w-80"></div></div></div>
+            <div class="card-3d c1">
+                <div class="card-inner">
+                    <div class="skeleton-circle"></div>
+                    <div class="skeleton-line w-80"></div>
+                    <div class="skeleton-line w-50"></div>
+                </div>
+            </div>
+            <div class="card-3d c2">
+                <div class="card-inner">
+                    <div class="skeleton-circle" style="border-radius: 4px;"></div>
+                    <div class="skeleton-line w-50"></div>
+                    <div class="skeleton-line w-80"></div>
+                </div>
+            </div>
             <div class="card-3d c3"></div>
         </div>
         <div class="landing-content">
@@ -37,64 +55,140 @@
     <!-- APP VIEW -->
     <div id="app-view">
         <header>
-            <div class="brand" title="Go to Home"><div class="brand-dot"></div>HeroForge</div>
-            <div><button class="btn-header-contact" id="btn-contact-trigger">Contact</button></div>
+            <div class="brand" title="Go to Home">
+                <div class="brand-dot"></div>HeroForge
+            </div>
+            <div class="header-right">
+                <span class="header-tagline">Ship your portfolio hero in seconds</span>
+                <button class="btn-header-contact" id="btn-contact-trigger">Contact</button>
+            </div>
         </header>
 
         <main id="main-content">
             <aside>
-                <div class="control-group">
-                    <label for="input-name">Full Name</label>
-                    <input type="text" id="input-name" placeholder="e.g. Mohan Prasath" value="Mohan Prasath">
+                <!-- Value Proposition -->
+                <div class="aside-header">
+                    <h2 class="aside-title">Create Your Hero</h2>
+                    <p class="aside-subtitle">Stand out with a professional portfolio intro — no design skills needed.
+                    </p>
                 </div>
-                <div class="control-group">
-                    <label for="input-role">Role</label>
-                    <select id="input-role"></select>
-                </div>
-                <div class="control-group">
-                    <label for="input-subheading">Subheading (Optional)</label>
-                    <input type="text" id="input-subheading" placeholder="Descriptive text..." value="">
-                </div>
-                <div class="control-group">
-                    <label style="margin-top: 10px;">Select Variant</label>
-                    <div class="variant-selector" id="variant-list">
-                        <button class="variant-option active" data-id="minimal"><strong>01. Protocol</strong><div style="font-size: 11px; opacity: 0.7; margin-top: 4px;">Grid-based, Minimalist, Technical</div></button>
-                        <button class="variant-option" data-id="neon"><strong>02. Lumina</strong><div style="font-size: 11px; opacity: 0.7; margin-top: 4px;">Mesh Gradients, Bold, Modern</div></button>
-                        <button class="variant-option" data-id="story"><strong>03. Narrative</strong><div style="font-size: 11px; opacity: 0.7; margin-top: 4px;">Typography focused, Elegant</div></button>
+
+                <!-- Identity Block -->
+                <div class="control-block">
+                    <div class="block-label">
+                        <span class="block-icon">👤</span>
+                        <span>Your Identity</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="input-name">What's your name?</label>
+                        <input type="text" id="input-name" placeholder="e.g. Mohan Prasath" value="Mohan Prasath">
+                    </div>
+                    <div class="control-group">
+                        <label for="input-role">What do you do?</label>
+                        <select id="input-role"></select>
+                    </div>
+                    <div class="control-group">
+                        <label for="input-subheading">Describe yourself (optional)</label>
+                        <input type="text" id="input-subheading" placeholder="e.g. Building scalable products..."
+                            value="">
                     </div>
                 </div>
-                <button class="btn-primary" id="btn-generate">Generate Hero Section</button>
+
+                <!-- Style Block -->
+                <div class="control-block">
+                    <div class="block-label">
+                        <span class="block-icon">🎨</span>
+                        <span>Choose Your Style</span>
+                    </div>
+                    <div class="variant-selector" id="variant-list">
+                        <button class="variant-option active" data-id="minimal">
+                            <div class="variant-icon">▦</div>
+                            <div class="variant-info">
+                                <strong>Protocol</strong>
+                                <span class="variant-tagline">Look professional & technical</span>
+                            </div>
+                            <span class="variant-badge recommended">Recommended</span>
+                        </button>
+                        <button class="variant-option" data-id="neon">
+                            <div class="variant-icon">◐</div>
+                            <div class="variant-info">
+                                <strong>Lumina</strong>
+                                <span class="variant-tagline">Stand out with bold gradients</span>
+                            </div>
+                        </button>
+                        <button class="variant-option" data-id="story">
+                            <div class="variant-icon">¶</div>
+                            <div class="variant-info">
+                                <strong>Narrative</strong>
+                                <span class="variant-tagline">Tell your story elegantly</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Primary CTA -->
+                <button class="btn-primary" id="btn-generate">
+                    <span class="btn-text">Generate Hero Section</span>
+                    <span class="btn-loading-spinner"></span>
+                </button>
+                <p class="cta-hint">✨ Auto-updates as you type</p>
             </aside>
 
             <div class="canvas-area code-hidden">
-                <div class="preview-wrapper"><div id="preview-target"></div></div>
-                
+                <!-- Live Preview Label -->
+                <div class="preview-header">
+                    <span class="live-indicator"></span>
+                    <span class="preview-label">Live Preview</span>
+                </div>
+                <div class="preview-wrapper">
+                    <div id="preview-target"></div>
+                </div>
+
                 <!-- Floating Toggle Button (Visible when code hidden) -->
-                <button id="btn-show-code" class="btn-floating-code">View Code</button>
+                <button id="btn-show-code" class="btn-floating-code">
+                    <span class="code-icon">&lt;/&gt;</span> View Code
+                </button>
 
                 <div class="code-panel">
                     <div class="code-header">
                         <div class="left-controls">
-                            <div class="window-controls"><div class="win-dot win-red"></div><div class="win-dot win-yellow"></div><div class="win-dot win-green"></div></div>
+                            <div class="window-controls">
+                                <div class="win-dot win-red"></div>
+                                <div class="win-dot win-yellow"></div>
+                                <div class="win-dot win-green"></div>
+                            </div>
                             <span class="code-title">index.html (Generated)</span>
                         </div>
                         <div class="right-actions">
                             <button class="btn-action" id="btn-hide-code">Hide Code</button>
-                            <button class="btn-action" id="btn-download">Download</button>
-                            <button class="btn-action" id="btn-copy">Copy</button>
+                            <button class="btn-action" id="btn-download">
+                                <span class="action-icon">↓</span> Download
+                            </button>
+                            <button class="btn-action" id="btn-copy">
+                                <span class="action-icon">⧉</span> Copy
+                            </button>
                         </div>
                     </div>
                     <div class="code-content" id="code-output"></div>
                 </div>
             </div>
         </main>
-        
+
         <footer class="app-footer">
             <div class="footer-content">
-                <span>Created by <strong style="color: var(--text-primary);">Mohan Prasath</strong></span>
-                <a href="https://bit.ly/mohan-dev" target="_blank" class="footer-link">Portfolio</a>
-                <a href="https://github.com/mohan-dev-portfolio" target="_blank" class="footer-link">GitHub</a>
-                <a href="https://www.linkedin.com/in/mohanprasath21" target="_blank" class="footer-link">LinkedIn</a>
+                <div class="footer-credits">
+                    <span class="footer-badge">🛠️ Built by Mohan Prasath</span>
+                    <span class="footer-divider">•</span>
+                    <a href="https://github.com/mohan-dev-portfolio/Hero-Section-Generator" target="_blank"
+                        class="footer-link github-link">
+                        <span class="github-icon">★</span> Open Source on GitHub
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="https://bit.ly/mohan-dev" target="_blank" class="footer-link">Portfolio</a>
+                    <a href="https://www.linkedin.com/in/mohanprasath21" target="_blank"
+                        class="footer-link">LinkedIn</a>
+                </div>
             </div>
         </footer>
     </div>
@@ -107,7 +201,8 @@
             <span class="modal-role">Frontend Developer</span>
             <div class="modal-links">
                 <a href="https://bit.ly/mohan-dev" target="_blank" class="modal-btn-link">Portfolio Website</a>
-                <a href="https://github.com/mohan-dev-portfolio" target="_blank" class="modal-btn-link">GitHub Profile</a>
+                <a href="https://github.com/mohan-dev-portfolio" target="_blank" class="modal-btn-link">GitHub
+                    Profile</a>
                 <a href="https://www.linkedin.com/in/mohanprasath21" target="_blank" class="modal-btn-link">LinkedIn</a>
             </div>
             <button class="btn-close-modal" id="btn-close-modal">Close</button>
@@ -270,11 +365,11 @@
                     btnGenerate: document.getElementById('btn-generate'),
                     btnCopy: document.getElementById('btn-copy'),
                     btnDownload: document.getElementById('btn-download'),
-                    
+
                     // Code Toggles
                     btnShowCode: document.getElementById('btn-show-code'),
                     btnHideCode: document.getElementById('btn-hide-code'),
-                    
+
                     codePanel: document.querySelector('.code-panel'),
                     canvasArea: document.querySelector('.canvas-area'),
                     btnContactTrigger: document.getElementById('btn-contact-trigger'),
@@ -351,9 +446,15 @@
                 });
 
                 this.dom.btnGenerate.addEventListener('click', () => {
-                    this.render();
-                    this.dom.previewTarget.style.opacity = '0.5';
-                    setTimeout(() => this.dom.previewTarget.style.opacity = '1', 200);
+                    // Add loading state
+                    this.dom.btnGenerate.classList.add('loading');
+                    this.dom.previewTarget.classList.add('generating');
+
+                    setTimeout(() => {
+                        this.render();
+                        this.dom.btnGenerate.classList.remove('loading');
+                        this.dom.previewTarget.classList.remove('generating');
+                    }, 300);
                 });
 
                 this.dom.btnCopy.addEventListener('click', () => {
@@ -372,6 +473,9 @@
                     a.click();
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
+
+                    // Show success feedback
+                    this.showDownloadFeedback();
                 });
 
                 this.dom.btnContactTrigger.addEventListener('click', () => {
@@ -388,7 +492,7 @@
 
                 this.dom.btnCloseModal.addEventListener('click', closeModal);
                 this.dom.modalBackdrop.addEventListener('click', closeModal);
-                
+
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && this.dom.contactModal.classList.contains('visible')) {
                         closeModal();
@@ -435,17 +539,27 @@
                 try {
                     document.execCommand('copy');
                     this.showCopyFeedback();
-                } catch (err) { console.error('Fallback copy failed', err); } 
+                } catch (err) { console.error('Fallback copy failed', err); }
                 finally { document.body.removeChild(textarea); }
             },
 
             showCopyFeedback() {
-                if (this.dom.btnCopy.classList.contains('copied')) return;
-                this.dom.btnCopy.textContent = "Copied!";
-                this.dom.btnCopy.classList.add('copied');
+                if (this.dom.btnCopy.classList.contains('success')) return;
+                this.dom.btnCopy.innerHTML = '<span class="action-icon">✓</span> Copied!';
+                this.dom.btnCopy.classList.add('success');
                 setTimeout(() => {
-                    this.dom.btnCopy.textContent = "Copy";
-                    this.dom.btnCopy.classList.remove('copied');
+                    this.dom.btnCopy.innerHTML = '<span class="action-icon">⧉</span> Copy';
+                    this.dom.btnCopy.classList.remove('success');
+                }, 2000);
+            },
+
+            showDownloadFeedback() {
+                if (this.dom.btnDownload.classList.contains('success')) return;
+                this.dom.btnDownload.innerHTML = '<span class="action-icon">✓</span> Downloaded!';
+                this.dom.btnDownload.classList.add('success');
+                setTimeout(() => {
+                    this.dom.btnDownload.innerHTML = '<span class="action-icon">↓</span> Download';
+                    this.dom.btnDownload.classList.remove('success');
                 }, 2000);
             },
 
@@ -504,4 +618,5 @@ ${componentHtml}
         });
     </script>
 </body>
+
 </html>
